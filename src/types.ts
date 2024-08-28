@@ -17,22 +17,18 @@ export type Menu = {
 
 export type DailyFood = {
   breakfast: {
-    name: string;
     menu: Menu[];
     priceEstimation: number;
   };
   lunch: {
-    name: string;
     menu: Menu[];
     priceEstimation: number;
   };
   dinner: {
-    name: string;
     menu: Menu[];
     priceEstimation: number;
   };
   snack?: {
-    name: string;
     menu: Menu[];
     priceEstimation: number;
   };
