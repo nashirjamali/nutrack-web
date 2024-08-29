@@ -20,7 +20,7 @@ export default function Home() {
             </Typography>
           </CardBody>
           <CardFooter className="pt-0">
-            <Link href="/input">
+            <Link href={'/input'}>
               <Button>Masukan makanan</Button>
             </Link>
           </CardFooter>
