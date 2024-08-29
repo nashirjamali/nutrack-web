@@ -48,56 +48,49 @@ export default function InputScreen() {
     };
 
     return (
-        <div className="flex flex-row">
-            <div className="basis-1/2">
-                <div className="flex items-center justify-center min-h-screen">
-                    <Card className="w-96">
-                        <form onSubmit={handleSubmit}>
-                            <CardBody className="flex flex-col gap-4">
-                                <Typography variant="h4" color="gray">
-                                    Input Makanan Hari Ini
-                                </Typography>
-                                <Input 
-                                    label="Sarapan" 
-                                    size="lg" 
-                                    crossOrigin={''}
-                                    onChange={handleBreakfastChange}
-                                    value={breakfastValue}
-                                />
-                                <Input 
-                                    label="Makan Siang" 
-                                    size="lg" 
-                                    crossOrigin={''}
-                                    onChange={handleLunchChange}
-                                    value={lunchValue}
-                                />
-                                <Input 
-                                    label="Makan Malam" 
-                                    size="lg" 
-                                    crossOrigin={''}
-                                    onChange={handleDinnerChange}
-                                    value={dinnerValue}
-                                />
-                                <Input 
-                                    label="Snack" 
-                                    size="lg" 
-                                    crossOrigin={''}
-                                    onChange={handleSnackChange}
-                                    value={snackValue}
-                                />
-                            </CardBody>
-                            <CardFooter className="pt-0">
-                                <Button type="submit" variant="outlined" fullWidth>
-                                    Submit
-                                </Button>
-                            </CardFooter>
-                        </form>
-                    </Card>
-                </div>
-            </div>
-            <div className="basis-1/2" style={{backgroundColor: 'black'}}>
-
-            </div>
+        <div className="flex items-center justify-center min-h-screen">
+            <Card className="w-96">
+                <form onSubmit={handleSubmit}>
+                    <CardBody className="flex flex-col gap-4">
+                        <Typography variant="h4" color="gray">
+                            Input Makanan Hari Ini
+                        </Typography>
+                        <Input 
+                            label="Sarapan" 
+                            size="lg" 
+                            crossOrigin={''}
+                            onChange={handleBreakfastChange}
+                            value={breakfastValue}
+                        />
+                        <Input 
+                            label="Makan Siang" 
+                            size="lg" 
+                            crossOrigin={''}
+                            onChange={handleLunchChange}
+                            value={lunchValue}
+                        />
+                        <Input 
+                            label="Makan Malam" 
+                            size="lg" 
+                            crossOrigin={''}
+                            onChange={handleDinnerChange}
+                            value={dinnerValue}
+                        />
+                        <Input 
+                            label="Snack" 
+                            size="lg" 
+                            crossOrigin={''}
+                            onChange={handleSnackChange}
+                            value={snackValue}
+                        />
+                    </CardBody>
+                    <CardFooter className="pt-0">
+                        <Button type="submit" variant="outlined" fullWidth>
+                            Submit
+                        </Button>
+                    </CardFooter>
+                </form>
+            </Card>
         </div>
     )
 }
