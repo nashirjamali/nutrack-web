@@ -38,3 +38,8 @@ export type Score = {
   name: string;
   quality: string;
 };
+
+export type Nutrition = {
+  name: string;
+  quantity: number;
+};

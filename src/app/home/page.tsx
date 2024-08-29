@@ -5,9 +5,9 @@ import {
   CardBody,
   CardFooter,
   Typography,
-  Button,
-  CardHeader
+  Button
 } from '@material-tailwind/react';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -20,7 +20,9 @@ export default function Home() {
             </Typography>
           </CardBody>
           <CardFooter className="pt-0">
-            <Button>Masukan makanan</Button>
+            <Link href="/input">
+              <Button>Masukan makanan</Button>
+            </Link>
           </CardFooter>
         </Card>
 

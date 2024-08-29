@@ -17,6 +17,7 @@
     "@dfinity/candid": "2.0.0",
     "@dfinity/identity": "2.0.0",
     "@dfinity/principal": "2.0.0",
+    "@junobuild/core": "^0.0.60",
     "@junobuild/core-peer": "0.0.19",
     "@material-tailwind/react": "2.1.9",
     "axios": "1.7.5",
