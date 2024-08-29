@@ -1,12 +1,12 @@
 export type User = {
   name: string;
-  birthDate: string;
-  gestationalAge: string;
+  birthDate: Date;
+  gestationalAge: number;
   height: number;
   weight: number;
-  medicalHistory: string;
+  medicalHistory: string[];
   address: string;
-  dailyBudget: string;
+  dailyBudget: number;
 };
 
 export type Menu = {
