@@ -20,9 +20,11 @@
     "@junobuild/core-peer": "0.0.19",
     "@material-tailwind/react": "2.1.9",
     "axios": "^1.7.5",
+    "date-fns": "^3.6.0",
     "next": "14.1.4",
     "openai": "^4.56.1",
     "react": "18",
+    "react-day-picker": "^9.0.8",
     "react-dom": "18"
   },
   "devDependencies": {
