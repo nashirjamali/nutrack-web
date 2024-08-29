@@ -5,8 +5,7 @@ import {
   CardBody,
   CardFooter,
   Typography,
-  Button,
-  CardHeader
+  Button
 } from '@material-tailwind/react';
 import Link from 'next/link';
 
