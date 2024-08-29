@@ -13,7 +13,7 @@ import {
 
 export default function InputScreen() {
   return (
-    <div className="flex items-center justify-center min-h-screen" style={{marginTop: 100}}>
+    <div className="flex items-center justify-center min-h-screen">
         <Card className="w-96">
             <CardBody className="flex flex-col gap-4">
                 <Typography variant="h4" color="gray">
