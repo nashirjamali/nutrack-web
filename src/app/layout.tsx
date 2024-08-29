@@ -1,8 +1,9 @@
-import type {Metadata} from 'next';
-import {JetBrains_Mono} from 'next/font/google';
+import type { Metadata } from 'next';
+import { JetBrains_Mono } from 'next/font/google';
 import './globals.css';
+import { Providers } from './provider';
 
-const jetBrainsMono = JetBrains_Mono({subsets: ['latin']});
+const jetBrainsMono = JetBrains_Mono({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -12,11 +13,13 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactElement;
 }>) {
   return (
     <html lang="en">
-      <body className={`${jetBrainsMono.className} bg-white`}>{children}</body>
+      <body className={`${jetBrainsMono.className} bg-white container mx-auto`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

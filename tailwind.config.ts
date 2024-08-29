@@ -3,7 +3,7 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 import withMT from '@material-tailwind/react/utils/withMT';
 
 const config: Config = {
-  content: ['./src/*/.{js,jsx,ts,tsx}'],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: defaultTheme
 };
 
