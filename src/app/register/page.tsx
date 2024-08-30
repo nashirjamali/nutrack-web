@@ -10,10 +10,14 @@ import {
 import { useState } from "react";
 import InputDatePicker from "@/components/InputDatePicker";
 import { User } from "@/types";
+import { DateValueType } from "react-tailwindcss-datepicker";
 
 export default function Register() {
   const [name, setName] = useState<string>("");
-  const [birthDate, setBirthDate] = useState<Date>();
+  const [datePicker, setDatePicker] = useState<DateValueType>({
+    startDate: null,
+    endDate: null,
+  });
   const [gestationalAge, setGestationalAge] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
   const [height, setHeight] = useState<number>(0);
@@ -37,7 +41,7 @@ export default function Register() {
   function submitFormHandler() {
     const data: User = {
       name,
-      birthDate: birthDate ?? new Date(),
+      birthDate: datePicker?.startDate ?? new Date(),
       gestationalAge,
       weight,
       height,
@@ -62,8 +66,8 @@ export default function Register() {
         />
         <InputDatePicker
           label="Tanggal lahir"
-          value={birthDate}
-          onChange={setBirthDate}
+          value={datePicker}
+          onChange={setDatePicker}
         />
         <Input
           label="Usia Kehamilan (minggu)"
