@@ -1,6 +1,6 @@
 'use client';
 
-import { AuthContext } from '@/juno/auth'
+import { AuthContext } from '@/juno/auth';
 import NutritionIndicator from '@/component/NutritionIndicator';
 import {
   Card,
@@ -11,10 +11,15 @@ import {
   CardHeader
 } from '@material-tailwind/react';
 import Link from 'next/link';
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react';
+import { DailyFood, Report } from '@/types';
+import { getDailyFood, getReport } from './handler';
 
 export default function Home() {
-  const userContext = useContext(AuthContext)
+  const userContext = useContext(AuthContext);
+
+  const [dailyFood, setDailyFood] = useState<DailyFood>();
+  const [report, setReport] = useState<Report[]>();
 
   const moment = require('moment');
   const date = moment('2024-08-30');
@@ -24,15 +29,34 @@ export default function Home() {
     { name: 'Lemak', quality: 'Berlebih' }
   ];
 
+  useEffect(() => {
+    async function getRecomendation() {
+      let response = await getDailyFood(userContext.user!);
+      
+      setDailyFood(response);
+    }
+
+    getRecomendation();
+  }, [userContext.user]);
+
+  useEffect(() => {
+    async function getReportData() {
+      let response = await getReport(userContext.user!);
+      
+      setReport(response);
+    }
+
+    getReportData();
+  }, [userContext.user]);
+
   return (
     <main className="">
       <div className="flex w-full h-screen">
-
-        <div className='basis-4/5 p-16'>
+        <div className="basis-4/5 p-16">
           <div className="flex flex-row gap-4 justify-between">
             <Card className="w-full">
               <CardBody>
-                <div className="text-3xl font-bold mb-2">Hi, Jokowi!</div>
+                <div className="text-3xl font-bold mb-2">Hi</div>
                 <div className="text-l">Sudah makan apa saja hari ini?</div>
               </CardBody>
               <CardFooter className="pt-0">
@@ -44,10 +68,10 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col mt-12">
-            <div className="text-3xl font-bold">Rekomendasi makanan hari ini</div>
-            <div className="text-l">
-              {date.format('dddd, DD MMMM YYYY')}
+            <div className="text-3xl font-bold">
+              Rekomendasi makanan hari ini
             </div>
+            <div className="text-l">{date.format('dddd, DD MMMM YYYY')}</div>
             <div className="grid grid-cols-2 gap-10 mt-8">
               {/* Breakfast */}
               <Card
@@ -67,17 +91,26 @@ export default function Home() {
                     <div className="text-1xl font-bold text-grey">Sarapan</div>
                   </Card>
                   <Card className="absolute bottom-4 w-full p-4">
-                    <div className="flex flex-row gap-2">
-                      <Typography variant="paragraph" className='text-grey'>Bayam</Typography>
-                      <Typography variant="h6" className='text-grey'>1 gram</Typography>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                      <Typography variant="paragraph" className='text-grey'>Bayam</Typography>
-                      <Typography variant="h6" className='text-grey'>1 gram</Typography>
-                    </div>
+                    {dailyFood?.breakfast.menus.map((food, index) => (
+                      <div key={index}>
+                        <div className="flex flex-row gap-2">
+                          <Typography variant="paragraph" className="text-grey">
+                            {food.name}
+                          </Typography>
+                          <Typography variant="h6" className="text-grey">
+                            {food.qty} {food.measurement}
+                          </Typography>
+                        </div>
+                      </div>
+                    ))}
+
                     <div className="flex flex-row gap-2 mt-4">
-                      <Typography variant="paragraph" className='text-grey'>Estimasi Biaya</Typography>
-                      <Typography variant="h6" className='text-grey'>Rp100.000</Typography>
+                      <Typography variant="paragraph" className="text-grey">
+                        Estimasi Biaya
+                      </Typography>
+                      <Typography variant="h6" className="text-grey">
+                        Rp {dailyFood?.breakfast.price_estimation}
+                      </Typography>
                     </div>
                   </Card>
                 </CardBody>
@@ -98,20 +131,30 @@ export default function Home() {
                 </CardHeader>
                 <CardBody className="relative">
                   <Card className="absolute top-4 left-4 p-3 bg-white w-max">
-                    <div className="text-1xl font-bold text-grey">Makan Siang</div>
+                    <div className="text-1xl font-bold text-grey">
+                      Makan Siang
+                    </div>
                   </Card>
                   <Card className="absolute bottom-4 w-full p-4">
-                    <div className="flex flex-row gap-2">
-                      <Typography variant="paragraph" className='text-grey'>Babi Kecap</Typography>
-                      <Typography variant="h6" className='text-grey'>1 Kg</Typography>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                      <Typography variant="paragraph" className='text-grey'>Kangkung</Typography>
-                      <Typography variant="h6" className='text-grey'>500 gram</Typography>
-                    </div>
+                    {dailyFood?.lunch.menus.map((food, index) => (
+                      <div key={index}>
+                        <div className="flex flex-row gap-2">
+                          <Typography variant="paragraph" className="text-grey">
+                            {food.name}
+                          </Typography>
+                          <Typography variant="h6" className="text-grey">
+                            {food.qty} {food.measurement}
+                          </Typography>
+                        </div>
+                      </div>
+                    ))}
                     <div className="flex flex-row gap-2 mt-4">
-                      <Typography variant="paragraph" className='text-grey'>Estimasi Biaya</Typography>
-                      <Typography variant="h6" className='text-grey'>Rp100.000</Typography>
+                      <Typography variant="paragraph" className="text-grey">
+                        Estimasi Biaya
+                      </Typography>
+                      <Typography variant="h6" className="text-grey">
+                        Rp {dailyFood?.breakfast.price_estimation}
+                      </Typography>
                     </div>
                   </Card>
                 </CardBody>
@@ -132,25 +175,34 @@ export default function Home() {
                 </CardHeader>
                 <CardBody className="relative">
                   <Card className="absolute top-4 left-4 p-3 bg-white w-max">
-                    <div className="text-1xl font-bold text-grey">Makan Malam</div>
+                    <div className="text-1xl font-bold text-grey">
+                      Makan Malam
+                    </div>
                   </Card>
                   <Card className="absolute bottom-4 w-full p-4">
-                    <div className="flex flex-row gap-2">
-                      <Typography variant="paragraph" className='text-grey'>Pizza Kecap</Typography>
-                      <Typography variant="h6" className='text-grey'>120 gram</Typography>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                      <Typography variant="paragraph" className='text-grey'>Penyetan Tahu Tempe</Typography>
-                      <Typography variant="h6" className='text-grey'>500 gram</Typography>
-                    </div>
+                    {dailyFood?.dinner.menus.map((food, index) => (
+                      <div key={index}>
+                        <div className="flex flex-row gap-2">
+                          <Typography variant="paragraph" className="text-grey">
+                            {food.name}
+                          </Typography>
+                          <Typography variant="h6" className="text-grey">
+                            {food.qty} {food.measurement}
+                          </Typography>
+                        </div>
+                      </div>
+                    ))}
                     <div className="flex flex-row gap-2 mt-4">
-                      <Typography variant="paragraph" className='text-grey'>Estimasi Biaya</Typography>
-                      <Typography variant="h6" className='text-grey'>Rp100.000</Typography>
+                      <Typography variant="paragraph" className="text-grey">
+                        Estimasi Biaya
+                      </Typography>
+                      <Typography variant="h6" className="text-grey">
+                        Rp {dailyFood?.breakfast.price_estimation}
+                      </Typography>
                     </div>
                   </Card>
                 </CardBody>
               </Card>
-              
 
               {/* Snack */}
               <Card
@@ -167,33 +219,48 @@ export default function Home() {
                 </CardHeader>
                 <CardBody className="relative">
                   <Card className="absolute top-4 left-4 p-3 bg-white w-max">
-                    <div className="text-1xl font-bold text-grey">Snack (Optional)</div>
+                    <div className="text-1xl font-bold text-grey">
+                      Snack (Optional)
+                    </div>
                   </Card>
                   <Card className="absolute bottom-4 w-full p-4">
-                    <div className="flex flex-row gap-2">
-                      <Typography variant="paragraph" className='text-grey'>Pizza Kecap</Typography>
-                      <Typography variant="h6" className='text-grey'>120 gram</Typography>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                      <Typography variant="paragraph" className='text-grey'>Penyetan Tahu Tempe</Typography>
-                      <Typography variant="h6" className='text-grey'>500 gram</Typography>
-                    </div>
+                    {dailyFood?.snack?.menus.map((food, index) => (
+                      <div key={index}>
+                        <div className="flex flex-row gap-2">
+                          <Typography variant="paragraph" className="text-grey">
+                            {food.name}
+                          </Typography>
+                          <Typography variant="h6" className="text-grey">
+                            {food.qty} {food.measurement}
+                          </Typography>
+                        </div>
+                      </div>
+                    ))}
                     <div className="flex flex-row gap-2 mt-4">
-                      <Typography variant="paragraph" className='text-grey'>Estimasi Biaya</Typography>
-                      <Typography variant="h6" className='text-grey'>Rp100.000</Typography>
+                      <Typography variant="paragraph" className="text-grey">
+                        Estimasi Biaya
+                      </Typography>
+                      <Typography variant="h6" className="text-grey">
+                        Rp {dailyFood?.breakfast.price_estimation}
+                      </Typography>
                     </div>
                   </Card>
                 </CardBody>
               </Card>
-
             </div>
           </div>
         </div>
 
         <div className="basis-1/5 pl-8 pr-8 pt-24 bg-gray-100">
-          <div className="text-2xl font-bold text-gray mb-8">Laporan nutrisi mu</div>
-          {data.map((item, index) => (
-            <NutritionIndicator key={index} name={item.name} quality={item.quality} />
+          <div className="text-2xl font-bold text-gray mb-8">
+            Laporan nutrisi mu
+          </div>
+          {report?.map((item, index) => (
+            <NutritionIndicator
+              key={index}
+              name={item.name}
+              quality={item.status}
+            />
           ))}
         </div>
       </div>

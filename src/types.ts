@@ -17,20 +17,20 @@ export type Menu = {
 
 export type DailyFood = {
   breakfast: {
-    menu: Menu[];
-    priceEstimation: number;
+    menus: Menu[];
+    price_estimation: number;
   };
   lunch: {
-    menu: Menu[];
-    priceEstimation: number;
+    menus: Menu[];
+    price_estimation: number;
   };
   dinner: {
-    menu: Menu[];
-    priceEstimation: number;
+    menus: Menu[];
+    price_estimation: number;
   };
   snack?: {
-    menu: Menu[];
-    priceEstimation: number;
+    menus: Menu[];
+    price_estimation: number;
   };
 };
 
@@ -42,4 +42,17 @@ export type Score = {
 export type Nutrition = {
   name: string;
   quantity: number;
+};
+
+export type DailyInput = {
+  breakfast: string;
+  lunch: string;
+  dinner: string;
+  snack?: string;
+};
+
+
+export type Report = {
+  name: string;
+  status: string;
 };

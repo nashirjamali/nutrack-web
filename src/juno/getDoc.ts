@@ -17,8 +17,16 @@ export const getDocUser = async (
 
 export const getDocNutrition = async (
   user: AuthUser
-): Promise<ListResults<Doc<Nutrition>>> => {
-  const data = await listDocs<Nutrition>({
+): Promise<
+  ListResults<
+    Doc<{
+      data: Nutrition;
+    }>
+  >
+> => {
+  const data = await listDocs<{
+    data: Nutrition;
+  }>({
     collection: 'nutritions',
     filter: {
       owner: user.owner
@@ -30,9 +38,17 @@ export const getDocNutrition = async (
 
 export const getDailyFoodRecomendation = async (
   user: AuthUser
-): Promise<ListResults<Doc<DailyFood>>> => {
-  const data = await listDocs<DailyFood>({
-    collection: 'nutritions',
+): Promise<
+  ListResults<
+    Doc<{
+      data: DailyFood;
+    }>
+  >
+> => {
+  const data = await listDocs<{
+    data: DailyFood;
+  }>({
+    collection: 'daily-food-recomendations',
     filter: {
       owner: user.owner
     }
