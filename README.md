@@ -1,5 +1,7 @@
 # Revolutionizing Maternal and Child Nutrition in Indonesia
 
+**Try the application [here](https://uh6kt-zaaaa-aaaal-ajupq-cai.icp0.io/).**
+
 ## Project Overview
 This project is designed to address the critical issues of maternal and child nutrition in Indonesia, particularly the problem of stunting among infants due to malnutrition. We have developed an application that leverages AI and blockchain technology to provide personalized nutritional guidance tailored to the needs and economic conditions of pregnant women and children.
 
@@ -39,5 +41,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 For any questions or inquiries, please contact us.
-
-**Try the application [here](https://uh6kt-zaaaa-aaaal-ajupq-cai.icp0.io/).**
