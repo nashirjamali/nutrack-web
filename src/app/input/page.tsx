@@ -48,11 +48,19 @@ export default function InputScreen() {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen">
-            <Card className="w-96">
+        <div className="flex w-full h-screen">
+            <div className="basis-1/2">
+                <img
+                    className="h-96 w-full h-dvh object-cover object-center"
+                    src="https://unsplash.com/photos/xMh_ww8HN_Q/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTd8fGZvb2R8ZW58MHx8fHwxNzI0OTI0MTg1fDI&force=true"
+                    alt="nature image"
+                />
+            </div>
+            <div className="basis-1/2 flex items-center justify-center">
+            <Card className="w-4/5">
                 <form onSubmit={handleSubmit}>
                     <CardBody className="flex flex-col gap-4">
-                        <Typography variant="h4" color="gray">
+                        <Typography variant="h3" color="gray" className="mb-8">
                             Input Makanan Hari Ini
                         </Typography>
                         <Input 
@@ -84,13 +92,14 @@ export default function InputScreen() {
                             value={snackValue}
                         />
                     </CardBody>
-                    <CardFooter className="pt-0">
-                        <Button type="submit" variant="outlined" fullWidth>
+                    <CardFooter className="pt-0 mt-8">
+                        <Button type="submit" variant="filled" fullWidth>
                             Submit
                         </Button>
                     </CardFooter>
                 </form>
             </Card>
+            </div>
         </div>
     )
 }
