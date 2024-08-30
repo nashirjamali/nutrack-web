@@ -1,13 +1,15 @@
 "use client";
 
 import { Button, Input, Typography } from "@material-tailwind/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { User } from "@/types";
 import { submit } from "./handler";
-import { signIn } from "@junobuild/core-peer";
+import { AuthContext } from "@/juno/auth";
 
 export default function Register() {
+  const { user } = useContext(AuthContext);
+
   const [name, setName] = useState<string>("");
   const [birthDate, setBirthDate] = useState<number>(0);
   const [gestationalAge, setGestationalAge] = useState<number>(0);
@@ -32,13 +34,11 @@ export default function Register() {
     };
 
     await submit(data);
-    await signIn();
-    localStorage.setItem("register", "1");
   }
 
   useEffect(() => {
-    if (localStorage.getItem("register")) router.push("/home");
-  }, [router]);
+    if (user) router.push("/home");
+  }, [user, router]);
 
   return (
     <div className="flex w-full h-screen">
