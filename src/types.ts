@@ -4,7 +4,7 @@ export type User = {
   gestationalAge: number;
   height: number;
   weight: number;
-  medicalHistory: string[];
+  medicalHistory: string;
   address: string;
   dailyBudget: number;
 };
