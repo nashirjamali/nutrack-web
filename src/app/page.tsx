@@ -1,5 +1,9 @@
 'use client';
 
+import FeaturesSection from "@/component/featurecard";
+import Footer from "@/component/footer";
+import Header from "@/component/header";
+import HeroSection from "@/component/herosection";
 import {initSatellite} from '@junobuild/core-peer';
 import {useEffect} from 'react';
 
@@ -12,14 +16,14 @@ export default function Home() {
         }
       }))();
   }, []);
-
   return (
-    <div className="relative isolate min-h-[100dvh]">
-      <main className="mx-auto max-w-screen-2xl py-16 px-8 md:px-24 tall:min-h-[calc(100dvh-128px)]">
-        <h1 className="dark:text-white text-5xl md:text-6xl font-extrabold md:pt-16">
-          Welcome to Juno
-        </h1>
+    <div>
+      <Header />
+      <main>
+        <HeroSection />
+        <FeaturesSection />
       </main>
+      <Footer />
     </div>
   );
 }

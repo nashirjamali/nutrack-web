@@ -1,14 +1,7 @@
-import {
-  Input,
-  Popover,
-  PopoverContent,
-  PopoverHandler
-} from '@material-tailwind/react';
-import { format } from 'date-fns';
-import React, { useState } from 'react';
-import { DayPicker } from 'react-day-picker';
-import 'react-day-picker/style.css';
-import { InputDatePickerProps } from './input-date-picker-props';
+import React, { useState } from "react";
+import "react-day-picker/style.css";
+import { InputDatePickerProps } from "./types/input-date-picker-props";
+import Datepicker, { DateValueType } from "react-tailwindcss-datepicker";
 
 export default function InputDatePicker(
   props: InputDatePickerProps
@@ -17,35 +10,20 @@ export default function InputDatePicker(
 
   const [openPopover, setOpenPopover] = useState<boolean>(false);
 
-  function inputChangeHandler(value: Date | undefined) {
+  function inputChangeHandler(value: DateValueType) {
     setOpenPopover(false);
-    onChange && onChange(value);
+    onChange(value);
   }
 
   return (
-    <div className={`${className}`} onClick={() => setOpenPopover(true)}>
-      <Popover placement="bottom" open={openPopover}>
-        <PopoverHandler>
-          <Input
-            label={label}
-            onChange={() => {}}
-            value={value ? format(value, 'dd-MM-yyyy') : ''}
-            crossOrigin={null}
-          />
-        </PopoverHandler>
-        <PopoverContent>
-          <DayPicker
-            mode="single"
-            selected={value}
-            onSelect={inputChangeHandler}
-            showOutsideDays
-            className="border-0"
-            footer={
-              value ? `Selected: ${format(value, 'dd-MM-yyyy')}` : 'Pilih hari.'
-            }
-          />
-        </PopoverContent>
-      </Popover>
+    <div className={`border border-gray-300 rounded-lg ${className}`}>
+      <Datepicker
+        asSingle
+        useRange={false}
+        placeholder={label}
+        value={value}
+        onChange={(newValue) => inputChangeHandler(newValue)}
+      />
     </div>
   );
 }

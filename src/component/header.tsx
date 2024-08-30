@@ -1,22 +1,14 @@
 'use client';
 import {
-  Card,
-  CardBody,
-  CardHeader,
-  CardFooter,
-  Input,
-  Checkbox,
   Button,
-  Typography
 } from '@material-tailwind/react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 const Header = () => {
   return (
     <header className="flex justify-between items-center py-4 px-6 bg-green-900 text-white">
       <div className="text-lg font-bold">
-        <Image
+        <img
           className="w-40 object-cover object-center"
           src="https://i.imgur.com/4ZBFx4B.png"
           alt="nature image"

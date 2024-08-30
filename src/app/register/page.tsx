@@ -1,27 +1,20 @@
-'use client';
+"use client";
 
-import {
-  Button,
-  Card,
-  Input,
-  List,
-  ListItem,
-  Typography
-} from '@material-tailwind/react';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { User } from '@/types';
-import { submit } from './handler';
-import Image from 'next/image';
+import { Button, Input, Typography } from "@material-tailwind/react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { User } from "@/types";
+import { submit } from "./handler";
+import { signIn } from "@junobuild/core-peer";
 
 export default function Register() {
-  const [name, setName] = useState<string>('');
+  const [name, setName] = useState<string>("");
   const [birthDate, setBirthDate] = useState<number>(0);
   const [gestationalAge, setGestationalAge] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
   const [height, setHeight] = useState<number>(0);
-  const [medicalHistory, setMedicalHistory] = useState<string>('');
-  const [address, setAddress] = useState<string>('');
+  const [medicalHistory, setMedicalHistory] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
   const [dailyBudget, setDailyBudget] = useState<number>(0);
 
   const router = useRouter();
@@ -35,20 +28,24 @@ export default function Register() {
       height,
       medicalHistory,
       address,
-      dailyBudget
+      dailyBudget,
     };
 
     await submit(data);
-
-    router.push('/home');
+    await signIn();
+    localStorage.setItem("register", "1");
   }
+
+  useEffect(() => {
+    if (localStorage.getItem("register")) router.push("/home");
+  }, [router]);
 
   return (
     <div className="flex w-full h-screen">
       <div className="basis-1/2">
-        <Image
+        <img
           className="w-full h-dvh object-cover object-center"
-          src="https://www.bhg.com/thmb/Mwd_YEkDbVg_fPsUDcWr3eZk9W0=/5645x0/filters:no_upscale():strip_icc()/difference-between-fruits-vegetables-01-5f92e7ec706b463287bcfb46985698f9.jpg"
+          src="/assets/img/register-img.jpg"
           alt="nature image"
         />
       </div>
@@ -64,55 +61,55 @@ export default function Register() {
           <Input
             label="Nama"
             value={name}
-            onChange={e => setName(e.target.value)}
-            crossOrigin={''}
+            onChange={(e) => setName(e.target.value)}
+            crossOrigin={""}
           />
           <Input
             label="Usia"
             value={birthDate}
             type="number"
-            onChange={e => setBirthDate(parseInt(e.target.value))}
-            crossOrigin={''}
+            onChange={(e) => setBirthDate(parseInt(e.target.value))}
+            crossOrigin={""}
           />
           <Input
             label="Usia Kehamilan (minggu)"
             type="number"
             value={gestationalAge}
-            onChange={e => setGestationalAge(parseInt(e.target.value))}
-            crossOrigin={''}
+            onChange={(e) => setGestationalAge(parseInt(e.target.value))}
+            crossOrigin={""}
           />
           <Input
             label="Berat badan"
             type="number"
             value={weight}
-            onChange={e => setWeight(parseInt(e.target.value))}
-            crossOrigin={''}
+            onChange={(e) => setWeight(parseInt(e.target.value))}
+            crossOrigin={""}
           />
           <Input
             label="Tinggi badan"
             type="number"
             value={height}
-            onChange={e => setHeight(parseInt(e.target.value))}
-            crossOrigin={''}
+            onChange={(e) => setHeight(parseInt(e.target.value))}
+            crossOrigin={""}
           />
           <Input
             label="Riwayat penyakit"
             value={medicalHistory}
-            onChange={e => setMedicalHistory(e.target.value)}
-            crossOrigin={''}
+            onChange={(e) => setMedicalHistory(e.target.value)}
+            crossOrigin={""}
           />
           <Input
             label="Lokasi tempat tinggal"
             value={address}
-            onChange={e => setAddress(e.target.value)}
-            crossOrigin={''}
+            onChange={(e) => setAddress(e.target.value)}
+            crossOrigin={""}
           />
           <Input
             label="Biaya makanan harian"
             type="number"
             value={dailyBudget}
-            onChange={e => setDailyBudget(parseInt(e.target.value))}
-            crossOrigin={''}
+            onChange={(e) => setDailyBudget(parseInt(e.target.value))}
+            crossOrigin={""}
           />
           <div className="flex gap-4">
             <Button

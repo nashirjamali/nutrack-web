@@ -11,7 +11,7 @@ import {
   CardHeader
 } from '@material-tailwind/react';
 import Link from 'next/link';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useMemo } from 'react';
 import { DailyFood, Report } from '@/types';
 import { getDailyFood, getReport } from './handler';
 
@@ -29,10 +29,17 @@ export default function Home() {
     { name: 'Lemak', quality: 'Berlebih' }
   ];
 
+  function useFormattedNumber(number: number): string {
+    return useMemo(() => {
+      const formatted = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      return `${formatted},00`;
+    }, [number]);
+  }
+
   useEffect(() => {
     async function getRecomendation() {
       let response = await getDailyFood(userContext.user!);
-      
+
       setDailyFood(response);
     }
 
@@ -42,7 +49,7 @@ export default function Home() {
   useEffect(() => {
     async function getReportData() {
       let response = await getReport(userContext.user!);
-      
+
       setReport(response);
     }
 
@@ -109,7 +116,10 @@ export default function Home() {
                         Estimasi Biaya
                       </Typography>
                       <Typography variant="h6" className="text-grey">
-                        Rp {dailyFood?.breakfast.price_estimation}
+                        Rp{' '}
+                        {useFormattedNumber(
+                          dailyFood?.breakfast.price_estimation ?? 0
+                        )}
                       </Typography>
                     </div>
                   </Card>
@@ -153,7 +163,10 @@ export default function Home() {
                         Estimasi Biaya
                       </Typography>
                       <Typography variant="h6" className="text-grey">
-                        Rp {dailyFood?.breakfast.price_estimation}
+                        Rp{' '}
+                        {useFormattedNumber(
+                          dailyFood?.lunch.price_estimation ?? 0
+                        )}
                       </Typography>
                     </div>
                   </Card>
@@ -197,7 +210,10 @@ export default function Home() {
                         Estimasi Biaya
                       </Typography>
                       <Typography variant="h6" className="text-grey">
-                        Rp {dailyFood?.breakfast.price_estimation}
+                        Rp{' '}
+                        {useFormattedNumber(
+                          dailyFood?.dinner.price_estimation ?? 0
+                        )}
                       </Typography>
                     </div>
                   </Card>
@@ -241,7 +257,10 @@ export default function Home() {
                         Estimasi Biaya
                       </Typography>
                       <Typography variant="h6" className="text-grey">
-                        Rp {dailyFood?.breakfast.price_estimation}
+                        Rp{' '}
+                        {useFormattedNumber(
+                          dailyFood?.snack?.price_estimation ?? 0
+                        )}
                       </Typography>
                     </div>
                   </Card>
