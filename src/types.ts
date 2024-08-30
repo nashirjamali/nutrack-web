@@ -1,6 +1,6 @@
 export type User = {
   name: string;
-  birthDate: Date;
+  birthDate: number;
   gestationalAge: number;
   height: number;
   weight: number;

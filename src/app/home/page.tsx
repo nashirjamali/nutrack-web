@@ -10,6 +10,7 @@ import {
   CardHeader
 } from '@material-tailwind/react';
 import Link from 'next/link';
+import { useMemo } from 'react';
 
 export default function Home() {
 
@@ -20,6 +21,14 @@ export default function Home() {
     { name: 'Karbo', quality: 'Baik' },
     { name: 'Lemak', quality: 'Berlebih' }
   ];
+  
+  function useFormattedNumber(number: number): string {
+    return useMemo(() => {
+      const formatted = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      return `${formatted},00`
+    }, [number]);
+  }
+  
 
   return (
     <main className="">
@@ -29,7 +38,7 @@ export default function Home() {
           <div className="flex flex-row gap-4 justify-between">
             <Card className="w-full">
               <CardBody>
-                <div className="text-3xl font-bold mb-2">Hi, Jokowi!</div>
+                <div className="text-3xl font-bold mb-2">Hi, Alex!</div>
                 <div className="text-l">Sudah makan apa saja hari ini?</div>
               </CardBody>
               <CardFooter className="pt-0">
@@ -177,7 +186,7 @@ export default function Home() {
                     </div>
                     <div className="flex flex-row gap-2 mt-4">
                       <Typography variant="paragraph" className='text-grey'>Estimasi Biaya</Typography>
-                      <Typography variant="h6" className='text-grey'>Rp100.000</Typography>
+                      <Typography variant="h6" className='text-grey'>Rp {useFormattedNumber(10000000)}</Typography>
                     </div>
                   </Card>
                 </CardBody>
