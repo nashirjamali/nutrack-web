@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-20 my-20">
+    <main className="flex flex-col gap-20 my-20 container mx-auto">
       <div className="flex flex-row gap-4 justify-between">
         <Card className="w-full">
           <CardBody>
