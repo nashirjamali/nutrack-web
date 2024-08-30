@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { Button, Typography } from '@material-tailwind/react';
-import Link from 'next/link';
+import { Button, Typography } from "@material-tailwind/react";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -18,7 +18,7 @@ const HeroSection = () => {
           well-being.
         </Typography>
         <div className="flex space-x-4">
-          <Link href={'/register'}>
+          <Link href={"/register"}>
             <Button color="green">Register</Button>
           </Link>
           <Button color="gray">About</Button>
@@ -26,7 +26,7 @@ const HeroSection = () => {
       </div>
       <div className="w-1/2">
         <img
-          src="https://cmecatalog.hms.harvard.edu/sites/default/files/hms_hero_program/GettyImages-1371124527%20copy.jpg"
+          src="/assets/img/landing-img.jpg"
           alt="Nutrition Coaching"
           className="w-full h-full object-cover"
         />
