@@ -1,5 +1,6 @@
 'use client';
 
+import { AuthContext } from '@/juno/auth'
 import {
   Card,
   CardBody,
@@ -8,8 +9,11 @@ import {
   Button
 } from '@material-tailwind/react';
 import Link from 'next/link';
+import { useContext } from 'react'
 
 export default function Home() {
+  const userContext = useContext(AuthContext)
+
   return (
     <main className="flex flex-col gap-20 my-20">
       <div className="flex flex-row gap-4 justify-between">

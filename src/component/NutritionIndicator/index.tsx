@@ -1,7 +1,10 @@
 import React from 'react';
 
-function NutritionIndicator({ name, quality }) {
-  const getColor = (quality) => {
+function NutritionIndicator({ name, quality }: {
+  name: any,
+  quality: any
+}) {
+  const getColor = (quality: any) => {
     switch (quality) {
       case 'Kurang':
         return 'bg-red-500';

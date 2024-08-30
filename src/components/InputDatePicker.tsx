@@ -2,13 +2,13 @@ import {
   Input,
   Popover,
   PopoverContent,
-  PopoverHandler,
-} from "@material-tailwind/react";
-import { format } from "date-fns";
-import React, { useState } from "react";
-import { DayPicker } from "react-day-picker";
-import "react-day-picker/style.css";
-import { InputDatePickerProps } from "./input-date-picker-props";
+  PopoverHandler
+} from '@material-tailwind/react';
+import { format } from 'date-fns';
+import React, { useState } from 'react';
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/style.css';
+import { InputDatePickerProps } from './input-date-picker-props';
 
 export default function InputDatePicker(
   props: InputDatePickerProps
@@ -29,7 +29,8 @@ export default function InputDatePicker(
           <Input
             label={label}
             onChange={() => {}}
-            value={value ? format(value, "dd-MM-yyyy") : ""}
+            value={value ? format(value, 'dd-MM-yyyy') : ''}
+            crossOrigin={null}
           />
         </PopoverHandler>
         <PopoverContent>
@@ -40,7 +41,7 @@ export default function InputDatePicker(
             showOutsideDays
             className="border-0"
             footer={
-              value ? `Selected: ${format(value, "dd-MM-yyyy")}` : "Pilih hari."
+              value ? `Selected: ${format(value, 'dd-MM-yyyy')}` : 'Pilih hari.'
             }
           />
         </PopoverContent>

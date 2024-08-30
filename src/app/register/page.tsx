@@ -1,40 +1,41 @@
-"use client";
+'use client';
 
 import {
   Button,
   Input,
   List,
   ListItem,
-  Typography,
-} from "@material-tailwind/react";
-import { useState } from "react";
-import InputDatePicker from "@/components/InputDatePicker";
-import { User } from "@/types";
+  Typography
+} from '@material-tailwind/react';
+import { useState } from 'react';
+import InputDatePicker from '@/components/InputDatePicker';
+import { User } from '@/types';
+import { submit } from './handler';
 
 export default function Register() {
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState<string>('');
   const [birthDate, setBirthDate] = useState<Date>();
   const [gestationalAge, setGestationalAge] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
   const [height, setHeight] = useState<number>(0);
-  const [medicalHistoryTmp, setMedicalHistoryTmp] = useState<string>("");
+  const [medicalHistoryTmp, setMedicalHistoryTmp] = useState<string>('');
   const [allMedicalHistory, setAllMedicalHistory] = useState<string[]>([]);
-  const [address, setAddress] = useState<string>("");
+  const [address, setAddress] = useState<string>('');
   const [dailyBudget, setDailyBudget] = useState<number>(0);
 
   function addMedicalHistory(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setAllMedicalHistory((prevValue) => [...prevValue, medicalHistoryTmp]);
-    setMedicalHistoryTmp("");
+    setAllMedicalHistory(prevValue => [...prevValue, medicalHistoryTmp]);
+    setMedicalHistoryTmp('');
   }
 
   function removeMedicalHistory(index: number) {
-    setAllMedicalHistory((prevValue) => [
-      ...prevValue.filter((_: string, i: number) => index !== i),
+    setAllMedicalHistory(prevValue => [
+      ...prevValue.filter((_: string, i: number) => index !== i)
     ]);
   }
 
-  function submitFormHandler() {
+  async function submitFormHandler() {
     const data: User = {
       name,
       birthDate: birthDate ?? new Date(),
@@ -43,10 +44,10 @@ export default function Register() {
       height,
       medicalHistory: allMedicalHistory,
       address,
-      dailyBudget,
+      dailyBudget
     };
 
-    console.log(data);
+    await submit(data);
   }
 
   return (
@@ -58,7 +59,8 @@ export default function Register() {
         <Input
           label="Nama"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={e => setName(e.target.value)}
+          crossOrigin={''}
         />
         <InputDatePicker
           label="Tanggal lahir"
@@ -69,26 +71,30 @@ export default function Register() {
           label="Usia Kehamilan (minggu)"
           type="number"
           value={gestationalAge}
-          onChange={(e) => setGestationalAge(parseInt(e.target.value))}
+          onChange={e => setGestationalAge(parseInt(e.target.value))}
+          crossOrigin={''}
         />
         <Input
           label="Berat badan"
           type="number"
           value={weight}
-          onChange={(e) => setWeight(parseInt(e.target.value))}
+          onChange={e => setWeight(parseInt(e.target.value))}
+          crossOrigin={''}
         />
         <Input
           label="Tinggi badan"
           type="number"
           value={height}
-          onChange={(e) => setHeight(parseInt(e.target.value))}
+          onChange={e => setHeight(parseInt(e.target.value))}
+          crossOrigin={''}
         />
         <div className="flex flex-row gap-2">
           <form className="basis-1/2" onSubmit={addMedicalHistory}>
             <Input
               label="Riwayat penyakit"
               value={medicalHistoryTmp}
-              onChange={(e) => setMedicalHistoryTmp(e.target.value)}
+              onChange={e => setMedicalHistoryTmp(e.target.value)}
+              crossOrigin={''}
             />
           </form>
           <List className="basis-1/2 border border-blue-gray-300 rounded-md flex flex-row">
@@ -112,13 +118,15 @@ export default function Register() {
         <Input
           label="Lokasi tempat tinggal"
           value={address}
-          onChange={(e) => setAddress(e.target.value)}
+          onChange={e => setAddress(e.target.value)}
+          crossOrigin={''}
         />
         <Input
           label="Biaya makanan harian"
           type="number"
           value={dailyBudget}
-          onChange={(e) => setDailyBudget(parseInt(e.target.value))}
+          onChange={e => setDailyBudget(parseInt(e.target.value))}
+          crossOrigin={''}
         />
 
         <Button color="blue" onClick={submitFormHandler}>
