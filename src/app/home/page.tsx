@@ -1,5 +1,6 @@
 'use client';
 
+import { AuthContext } from '@/juno/auth'
 import NutritionIndicator from '@/component/NutritionIndicator';
 import {
   Card,
@@ -10,8 +11,10 @@ import {
   CardHeader
 } from '@material-tailwind/react';
 import Link from 'next/link';
+import { useContext } from 'react'
 
 export default function Home() {
+  const userContext = useContext(AuthContext)
 
   const moment = require('moment');
   const date = moment('2024-08-30');
