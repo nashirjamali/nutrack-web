@@ -1,3 +1,13 @@
-import {withJuno} from '@junobuild/nextjs-plugin';
+import { withJuno } from '@junobuild/nextjs-plugin';
 
-export default withJuno({juno: {container: true}});
+export default withJuno({
+  juno: { container: true },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**'
+      }
+    ]
+  }
+});

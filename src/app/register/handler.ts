@@ -2,7 +2,6 @@ import { getFoodRecomendationFirst } from "@/apis/openai-api"
 import { storeDocDailyFoodRecomendations, storeDocUser } from "@/juno/storeDoc"
 import { User } from "@/types"
 import { signIn } from '@junobuild/core-peer'
-import { redirect } from "next/navigation"
 
 export const submit = async (user: User) => {
   await signIn();
@@ -10,6 +9,4 @@ export const submit = async (user: User) => {
   const dailyFoodRecomendation = await getFoodRecomendationFirst(user);
 
   await storeDocDailyFoodRecomendations(dailyFoodRecomendation);
-
-  redirect('/home');
 };

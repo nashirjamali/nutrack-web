@@ -9,7 +9,7 @@ import {
   Typography
 } from '@material-tailwind/react';
 import { useState } from 'react';
-import InputDatePicker from '@/components/InputDatePicker';
+import { useRouter } from 'next/navigation';
 import { User } from '@/types';
 import { submit } from './handler';
 import Image from 'next/image';
@@ -24,6 +24,8 @@ export default function Register() {
   const [address, setAddress] = useState<string>('');
   const [dailyBudget, setDailyBudget] = useState<number>(0);
 
+  const router = useRouter();
+
   async function submitFormHandler() {
     const data: User = {
       name,
@@ -37,6 +39,8 @@ export default function Register() {
     };
 
     await submit(data);
+
+    router.push('/home');
   }
 
   return (
