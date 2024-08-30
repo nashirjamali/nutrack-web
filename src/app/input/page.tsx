@@ -9,7 +9,6 @@ import {
   Button,
   Typography
 } from '@material-tailwind/react';
-import Image from 'next/image';
 import { useContext, useEffect, useState } from 'react';
 import { submit } from './handler';
 import { AuthContext } from '@/juno/auth';
@@ -62,9 +61,9 @@ export default function InputScreen() {
   return (
     <div className="flex w-full h-screen">
       <div className="basis-1/2">
-        <Image
+        <img
           className="w-full h-dvh object-cover object-center"
-          src="https://unsplash.com/photos/xMh_ww8HN_Q/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTd8fGZvb2R8ZW58MHx8fHwxNzI0OTI0MTg1fDI&force=true"
+          src="/assets/img/input-img.jpg"
           alt="nature image"
         />
       </div>
