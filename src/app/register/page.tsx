@@ -14,7 +14,7 @@ import { User } from "@/types";
 
 export default function Register() {
   const [name, setName] = useState<string>("");
-  const [birthDate, setBirthDate] = useState<Date>();
+  const [birthDate, setBirthDate] = useState<number>(0);
   const [gestationalAge, setGestationalAge] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
   const [height, setHeight] = useState<number>(0);
@@ -25,7 +25,7 @@ export default function Register() {
   function submitFormHandler() {
     const data: User = {
       name,
-      birthDate: birthDate ?? new Date(),
+      birthDate,
       gestationalAge,
       weight,
       height,
@@ -60,10 +60,10 @@ export default function Register() {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            <InputDatePicker
-              label="Tanggal lahir"
+            <Input
+              label="Usia"
               value={birthDate}
-              onChange={setBirthDate}
+              onChange={(e) => setBirthDate(e.target.value)}
             />
             <Input
               label="Usia Kehamilan (minggu)"
