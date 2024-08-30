@@ -10,9 +10,16 @@ import {
   Typography
 } from '@material-tailwind/react';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { submit } from './handler';
+import { AuthContext } from '@/juno/auth';
+import { useRouter } from 'next/navigation';
 
 export default function InputScreen() {
+  const userContext = useContext(AuthContext);
+
+  const router = useRouter();
+
   const [breakfastValue, setBreakfastValue] = useState('');
   const [lunchValue, setLunchValue] = useState('');
   const [dinnerValue, setDinnerValue] = useState('');
@@ -36,14 +43,20 @@ export default function InputScreen() {
     setSnackValue(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log({
-      breakfast: breakfastValue,
-      lunch: lunchValue,
-      dinner: dinnerValue,
-      snack: snackValue
-    });
+
+    await submit(
+      {
+        breakfast: breakfastValue,
+        lunch: lunchValue,
+        dinner: dinnerValue,
+        snack: snackValue
+      },
+      userContext.user!
+    );
+
+    router.back();
   };
 
   return (

@@ -14,7 +14,7 @@ export const storeDocUser = async (user: User) => {
 
 export const storeDocNutrition = async (nutrition: Nutrition) => {
   await setDoc({
-    collection: 'nutrition',
+    collection: 'nutritions',
     doc: {
       key: `nutrition-${new Date().getTime()}`,
       data: nutrition
