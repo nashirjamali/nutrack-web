@@ -1,7 +1,6 @@
 'use client';
 
 import { Button, Typography } from '@material-tailwind/react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 const HeroSection = () => {
@@ -26,7 +25,7 @@ const HeroSection = () => {
         </div>
       </div>
       <div className="w-1/2">
-        <Image
+        <img
           src="https://cmecatalog.hms.harvard.edu/sites/default/files/hms_hero_program/GettyImages-1371124527%20copy.jpg"
           alt="Nutrition Coaching"
           className="w-full h-full object-cover"
