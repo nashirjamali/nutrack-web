@@ -23,6 +23,7 @@ export default function InputScreen() {
   const [lunchValue, setLunchValue] = useState('');
   const [dinnerValue, setDinnerValue] = useState('');
   const [snackValue, setSnackValue] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleBreakfastChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -45,6 +46,8 @@ export default function InputScreen() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    setLoading(true);
+
     await submit(
       {
         breakfast: breakfastValue,
@@ -56,6 +59,7 @@ export default function InputScreen() {
     );
 
     router.back();
+    setLoading(false);
   };
 
   return (
@@ -107,7 +111,13 @@ export default function InputScreen() {
               />
             </CardBody>
             <CardFooter className="pt-0 mt-8">
-              <Button type="submit" variant="filled" color="green" fullWidth>
+              <Button
+                type="submit"
+                variant="filled"
+                color="green"
+                fullWidth
+                loading={loading}
+              >
                 Submit
               </Button>
             </CardFooter>
