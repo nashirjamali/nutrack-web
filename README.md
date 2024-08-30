@@ -14,7 +14,7 @@ Below are some screenshots of the application showcasing its features:
 
 ### Register
 ![Meal Plan](./screenshoots/register.png)
-*Register with personal data with mom and baby input within your planing.*
+*Register with personal data with mom and baby input within your planning.*
 
 ### Home Screen
 ![Home Screen](./screenshoots/home.png)
@@ -22,11 +22,11 @@ Below are some screenshots of the application showcasing its features:
 
 ### Meal Input
 ![Meal Plan](./screenshoots/input.png)
-*Input your meal dailly to get more personalized meal and reporting daily.*
+*Input your meal daily to get more personalized meal and reporting daily.*
 
 ### Meal Logging and Report
 ![Meal Logging](./screenshoots/report.png)
-*Screen where users can log their daily meals, allowing the AI to adjust future plans and see you nutrion reporting.*
+*Screen where users can log their daily meals, allowing the AI to adjust future plans and see your nutrition reporting.*
 
 ## Getting Started
 To get started with this project, clone the repository and follow the installation instructions provided in the documentation.
@@ -39,3 +39,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 For any questions or inquiries, please contact us.
+
+**Try the application [here](https://uh6kt-zaaaa-aaaal-ajupq-cai.icp0.io/).**
