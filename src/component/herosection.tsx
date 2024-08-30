@@ -1,6 +1,7 @@
 'use client';
 
 import { Button, Typography } from "@material-tailwind/react";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -14,7 +15,9 @@ const HeroSection = () => {
             see the difference personalized nutrition can make for your family's well-being.
         </Typography>
         <div className="flex space-x-4">
-          <Button color="green">Register</Button>
+          <Link href={'/register'}>
+            <Button color="green">Register</Button>
+          </Link>
           <Button color="gray">About</Button>
         </div>
       </div>

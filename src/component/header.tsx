@@ -9,6 +9,7 @@ import {
     Button,
     Typography,
 } from "@material-tailwind/react";
+import Link from "next/link";
 
 const Header = () => {
     return (
@@ -16,7 +17,9 @@ const Header = () => {
         <div className="text-lg font-bold">NuTrack</div>
         <nav className="flex space-x-4">
         </nav>
-        <Button color="green" className="ml-4">Register</Button>
+        <Link href={'/register'}>
+            <Button color="green" className="ml-4">Register</Button>
+        </Link>
       </header>
     );
   };

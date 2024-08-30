@@ -1,5 +1,4 @@
 'use client';
-
 import {
     Card,
     CardBody,
@@ -60,8 +59,11 @@ export default function InputScreen() {
             <Card className="w-4/5">
                 <form onSubmit={handleSubmit}>
                     <CardBody className="flex flex-col gap-4">
-                        <Typography variant="h3" color="gray" className="mb-8">
+                        <Typography variant="h1" color="gray">
                             Input Makanan Hari Ini
+                        </Typography>
+                        <Typography color="gray" className="mb-8">
+                            Untuk mengetahui nutrisimu
                         </Typography>
                         <Input 
                             label="Sarapan" 
@@ -93,7 +95,7 @@ export default function InputScreen() {
                         />
                     </CardBody>
                     <CardFooter className="pt-0 mt-8">
-                        <Button type="submit" variant="filled" fullWidth>
+                        <Button type="submit" variant="filled" color="green" fullWidth>
                             Submit
                         </Button>
                     </CardFooter>
