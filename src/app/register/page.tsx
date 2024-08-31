@@ -38,14 +38,10 @@ export default function Register() {
     };
 
     await submit(data);
-    await signIn();
-    localStorage.setItem('register', '1');
     setLoading(false);
-  }
 
-  useEffect(() => {
-    if (user) router.push("/home");
-  }, [user, router]);
+    router.push("/home");
+  }
 
   return (
     <div className="flex w-full h-screen">
